@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Navigation from "./_components/Navigation";
 import Image from "next/image";
-import bg from "@/public/bg.png";
+import bg from "@/public/bg.jpg";
 
 export default function Page() {
   return (
@@ -11,7 +10,7 @@ export default function Page() {
         src={bg}
         fill
         placeholder="blur"
-        quality={80}
+        quality={100}
         alt="Mountains and forests with two cabins"
       />
 
