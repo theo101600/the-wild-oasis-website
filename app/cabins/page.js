@@ -3,6 +3,8 @@ import CabinList from "../_components/CabinList";
 import { TailChase } from "ldrs/react";
 import "ldrs/react/TailChase.css";
 
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Cabins",
 };
