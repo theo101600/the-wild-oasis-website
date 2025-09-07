@@ -1,14 +1,13 @@
-import CabinCard from "@/app/_components/CabinCard";
-import { getCabins } from "../_lib/data-service";
+import { Suspense } from "react";
+import CabinList from "../_components/CabinList";
+import { TailChase } from "ldrs/react";
+import "ldrs/react/TailChase.css";
 
 export const metadata = {
   title: "Cabins",
 };
 
-export default async function Page() {
-  // CHANGE
-  const cabins = await getCabins();
-
+export default function Page() {
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -22,14 +21,16 @@ export default async function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
-
-      {cabins.length > 0 && (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cabins.map((cabin) => (
-            <CabinCard cabin={cabin} key={cabin.id} />
-          ))}
-        </div>
-      )}
+      <Suspense
+        fallback={
+          <div className="flex flex-col items-center justify-center text-accent-500 ">
+            <TailChase size="40" speed="1.75" color="currentColor" />
+            <p>Loading cabin data...</p>
+          </div>
+        }
+      >
+        <CabinList />
+      </Suspense>
     </div>
   );
 }
