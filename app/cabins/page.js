@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import { TailChase } from "ldrs/react";
 import "ldrs/react/TailChase.css";
+import Filter from "../_components/Filter";
 
 export const revalidate = 3600;
 
@@ -9,7 +10,9 @@ export const metadata = {
   title: "Cabins",
 };
 
-export default function Page() {
+export default function Page({ searchParams }) {
+  const filter = searchParams?.capacity ?? "all";
+
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -23,6 +26,9 @@ export default function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
       <Suspense
         fallback={
           <div className="flex flex-col items-center justify-center text-accent-500 ">
@@ -30,8 +36,9 @@ export default function Page() {
             <p>Loading cabin data...</p>
           </div>
         }
+        key={filter}
       >
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
