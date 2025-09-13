@@ -3,6 +3,7 @@ import CabinList from "../_components/CabinList";
 import { TailChase } from "ldrs/react";
 import "ldrs/react/TailChase.css";
 import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 
 export const revalidate = 3600;
 
@@ -39,6 +40,7 @@ export default function Page({ searchParams }) {
         key={filter}
       >
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
